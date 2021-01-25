@@ -2,7 +2,12 @@
 # yarn lockfile v1
 
 
-"@types/node@^10.11.2":
-  version "10.11.2"
-  resolved "http://registry.npm.taobao.org/@types/node/download/@types/node-10.11.2.tgz#59508b88ce90fe2742f7b8414c6f5db3e359570d"
-  integrity sha1-WVCLiM6Q/idC97hBTG9ds+NZVw0=
+"@types/node@^14.14.22":
+  version "14.14.22"
+  resolved "https://registry.npm.taobao.org/@types/node/download/@types/node-14.14.22.tgz#0d29f382472c4ccf3bd96ff0ce47daf5b7b84b18"
+  integrity sha1-DSnzgkcsTM872W/wzkfa9be4Sxg=
+
+typescript@^4.1.3:
+  version "4.1.3"
+  resolved "https://registry.npm.taobao.org/typescript/download/typescript-4.1.3.tgz#519d582bd94cba0cf8934c7d8e8467e473f53bb7"
+  integrity sha1-UZ1YK9lMugz4k0x9joRn5HP1O7c=
