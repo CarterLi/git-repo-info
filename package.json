@@ -1,6 +1,6 @@
 {
   "name": "git-cmd-repo-info",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Retrieves repo information WITH relying on the git command.",
   "main": "cjs/index.js",
   "module": "esm/index.js",
@@ -9,7 +9,8 @@
   "author": "李通洲 <carter.li@eoitek.com>",
   "license": "MIT",
   "scripts": {
-    "build": "yarn build-esm && yarn build-cjs",
+    "build": "yarn clean && yarn build-esm && yarn build-cjs",
+    "clean": "rm -rf esm cjs",
     "build-esm": "tsc -p .",
     "build-cjs": "tsc -p . -m commonjs --outDir cjs"
   },
