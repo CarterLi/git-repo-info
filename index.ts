@@ -7,7 +7,7 @@ export default function getRepoInfo(cwd = process.cwd()) {
     const [sha, abbreviatedSha, committer, committerDate, author, authorDate, commitMessage] = detailString.split('\n');
     const branch = (() => {
       try {
-        return cp.execSync('git symbolic-ref --short HEAD', execConfig).trim();
+        return cp.execSync('git symbolic-ref --short HEAD -q', execConfig).trim();
       } catch (e) {
         return null; // ref HEAD is not a symbolic ref
       }
