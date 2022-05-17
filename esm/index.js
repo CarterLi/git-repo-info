@@ -2,17 +2,17 @@ import * as cp from 'child_process';
 export default function getRepoInfo(cwd = process.cwd()) {
     try {
         const execConfig = { encoding: 'utf8', cwd };
-        const detailString = cp.execSync(`git -P show --format='%H%n%h%n%cn%n%cI%n%an%n%aI%n%s' -q --encoding=UTF-8`, execConfig);
+        const detailString = cp.execSync(`git --no-pager show --format='%H%n%h%n%cn%n%cI%n%an%n%aI%n%s' --quiet --encoding=UTF-8`, execConfig);
         const [sha, abbreviatedSha, committer, committerDate, author, authorDate, commitMessage] = detailString.split('\n');
         const branch = (() => {
             try {
-                return cp.execSync('git -P symbolic-ref --short HEAD -q', execConfig).trim();
+                return cp.execSync('git --no-pager symbolic-ref --short HEAD --quiet', execConfig).trim();
             }
             catch (e) {
                 return null; // ref HEAD is not a symbolic ref
             }
         })();
-        const tagString = cp.execSync('git -P describe --tags --long --always', execConfig).trim();
+        const tagString = cp.execSync('git --no-pager describe --tags --long --always', execConfig).trim();
         const [, lastTag, commitsSinceLastTag] = /^(.*)-(\d+)-\w+$/.exec(tagString) || [null, null, Infinity];
         return {
             branch,
