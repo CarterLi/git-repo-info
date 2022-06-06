@@ -4,8 +4,9 @@ const cp = require("child_process");
 function getRepoInfo(cwd = process.cwd()) {
     try {
         const execConfig = { encoding: 'utf8', cwd };
-        const detailString = cp.execSync(`git --no-pager show --format='%H%n%h%n%cn%n%cI%n%an%n%aI%n%s' --quiet --encoding=UTF-8`, execConfig);
-        const [sha, abbreviatedSha, committer, committerDate, author, authorDate, commitMessage] = detailString.split('\n');
+        const detailString = cp.execSync(`git --no-pager show --format='%n%H%n%h%n%cn%n%cI%n%an%n%aI%n%s' --quiet --encoding=UTF-8`, execConfig);
+        // Workaround a Windows specfic issue that git show returns a `'`
+        const [, sha, abbreviatedSha, committer, committerDate, author, authorDate, commitMessage] = detailString.split('\n');
         const branch = (() => {
             try {
                 return cp.execSync('git --no-pager symbolic-ref --short HEAD --quiet', execConfig).trim();
