@@ -1,6 +1,6 @@
 {
   "name": "git-cmd-repo-info",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Retrieves repo information WITH relying on the git command.",
   "main": "cjs/index.js",
   "module": "esm/index.js",
