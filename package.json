@@ -2,21 +2,28 @@
   "name": "git-cmd-repo-info",
   "version": "1.0.6",
   "description": "Retrieves repo information WITH relying on the git command.",
-  "main": "cjs/index.js",
-  "module": "esm/index.js",
+  "main": "cjs/index.cjs",
+  "module": "esm/index.mjs",
   "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./esm/index.mjs",
+      "require": "./cjs/index.cjs"
+    }
+  },
   "repository": "git@github.com:CarterLi/git-repo-info.git",
   "author": "李通洲 <carter.li@eoitek.com>",
   "license": "MIT",
-  "scripts": {
-    "build": "pnpm clean && pnpm build-esm && pnpm build-cjs",
-    "clean": "rm -rf esm cjs index.d.ts",
-    "build-esm": "tsc -p .",
-    "build-cjs": "tsc -p . -m commonjs --outDir cjs",
-    "test": "node test"
-  },
   "devDependencies": {
     "@types/node": "^17.0.34",
     "typescript": "^4.6.4"
+  },
+  "scripts": {
+    "build": "pnpm clean && pnpm build-esm && pnpm build-cjs",
+    "clean": "rm -rf esm cjs index.d.ts",
+    "build-esm": "tsc -p . && mv ./esm/index.js ./esm/index.mjs",
+    "build-cjs": "tsc -p . -m commonjs --outDir cjs && mv ./cjs/index.js ./cjs/index.cjs",
+    "test": "node test/index.cjs && node test/index.mjs"
   }
 }
